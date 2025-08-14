@@ -1,45 +1,40 @@
-# Build a Fullstack Inventory Management Dashboard
+# Full-Stack Inventory Management System
 
-[![Tutorial Video](https://img.youtube.com/vi/ddKQ8sZo_v8/0.jpg)](https://www.youtube.com/watch?v=ddKQ8sZo_v8)
+A robust, full-stack web application built with the MERN stack (MongoDB, Express, React, Node.js) to provide a comprehensive solution for managing inventory. This system allows for secure user authentication and provides full CRUD (Create, Read, Update, Delete) functionality for inventory items.
 
-Link to related video: https://www.youtube.com/watch?v=ddKQ8sZo_v8
+## 🚀 Live Demo
 
-## Tutorial
+[Link to your deployed application] ## 📸 Application Preview
 
-This repository contains the code corresponding to an in-depth tutorial available on my YouTube channel. It is highly suggested to watch the [tutorial video](https://www.youtube.com/watch?v=ddKQ8sZo_v8) as it includes detailed instructions on how to set up everything, including deploying AWS. This tutorial is designed for both beginners and experts.
+![Inventory Dashboard Screenshot](https://user-images.githubusercontent.com/15293235/209420822-03126e08-2510-4355-8818-0599c233267b.png)
 
-Join our [Discord community](https://discord.com/channels/1070200085440376872/1267499814678171698) for discussions about this specific app.
+## ✨ Key Features
 
-## Tech Stack
+-   **Secure Authentication:** User registration and login with JWT-based sessions.
+-   **Password Encryption:** Utilizes `bcrypt` for hashing passwords to ensure user data is secure.
+-   **Centralized Dashboard:** An intuitive dashboard to view, search, and manage all inventory items.
+-   **Complete CRUD Operations:** Easily add new products, update existing stock details, and remove items.
+-   **Responsive Design:** A modern UI built with Next.js and Tailwind CSS, fully responsive for all device sizes.
 
-- **Next JS**
-- **Tailwind**
-- **Redux Toolkit**
-- **Redux Toolkit Query**
-- **Material UI Data Grid**
-- **Node.js**
-- **Prisma**
-- **AWS EC2**
-- **AWS RDS**
-- **AWS API Gateway**
-- **AWS Amplify**
-- **AWS S3**
+## 🛠️ Tech Stack
 
-## Resources and Links
+**Frontend:**
+* React & Next.js
+* Redux Toolkit (for state management)
+* Tailwind CSS
 
-### Image Files
+**Backend:**
+* Node.js & Express.js
+* Mongoose (for MongoDB interaction)
+* JSON Web Token (JWT) & Bcrypt.js
 
-- [Server assets to download](https://github.com/ed-roh/inventory-management/tree/master/server/assets)
+**Database:**
+* MongoDB (with MongoDB Atlas)
 
-### Configuration and Code
+## 📦 Installation and Setup
 
-- [tailwind.config.ts](https://github.com/ed-roh/inventory-management/blob/master/client/tailwind.config.ts) (to copy)
-- [Redux store file](https://github.com/ed-roh/inventory-management/blob/master/client/src/app/redux.tsx) (to copy)
-- [Seed files for database](https://github.com/ed-roh/inventory-management/blob/master/server/prisma/seed.ts) (to copy)
-- [Seed data files](https://github.com/ed-roh/inventory-management/tree/master/server/prisma/seedData) (to download)
-
-### Additional Resources
-
-- [Data model diagram](https://drawsql.app/teams/team-3023/diagrams/56-inventorymanagement)
-- [Prisma schema file](https://github.com/ed-roh/inventory-management/blob/master/server/prisma/schema.prisma)
-- [AWS commands](https://github.com/ed-roh/inventory-management/blob/master/server/aws-ec2-instructions.md)
+1.  Clone the repository:
+    `git clone https://github.com/YourUsername/Your-Repo-Name.git`
+2.  Set up the `server/.env` file with your `MONGO_URL` and `JWT_SECRET`.
+3.  Run `npm install` in the `root`, `client`, and `server` directories.
+4.  Run `npm run dev` from the root directory to start the application.
