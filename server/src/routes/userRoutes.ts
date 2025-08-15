@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { getUsers } from "../controllers/userController";
+// You are trying to import getUsers here, but it's not exported in the controller.
+// This is likely causing a separate error.
+import { getUsers, registerUser, loginUser } from "../controllers/userController";
 
 const router = Router();
 
 router.get("/", getUsers);
+router.post("/register", registerUser);
+router.post("/login", loginUser);
 
-export default router;
+export const userRoutes = router;

@@ -1,16 +1,17 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-/* ROUTE IMPORTS */
-import dashboardRoutes from "./routes/dashboardRoutes";
-import productRoutes from "./routes/productRoutes";
-import userRoutes from "./routes/userRoutes";
-import expenseRoutes from "./routes/expenseRoutes";
+import { userRoutes } from "./routes/userRoutes";
+import { productRoutes } from "./routes/productRoutes";
+import { dashboardRoutes } from "./routes/dashboardRoutes";
+import { expenseRoutes } from "./routes/expenseRoutes";
+// Use a named import here
+import { auth } from "../middleware/auth"; 
 
-/* CONFIGURATIONS */
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -21,13 +22,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-/* ROUTES */
-app.use("/dashboard", dashboardRoutes); // http://localhost:8000/dashboard
-app.use("/products", productRoutes); // http://localhost:8000/products
-app.use("/users", userRoutes); // http://localhost:8000/users
-app.use("/expenses", expenseRoutes); // http://localhost:8000/expenses
+app.use("/api/dashboard", auth, dashboardRoutes);
+app.use("/api/products", auth, productRoutes);
+app.use("/api/expenses", auth, expenseRoutes);
 
-/* SERVER */
+app.use("/api/users", userRoutes);
+
+// This is for Mongoose, but your project uses Prisma. I've commented this out.
+// mongoose.connect(process.env.MONGO_URL!)
+//   .then(() => console.log('MongoDB connected'))
+//   .catch(err => console.error(err));
+
 const port = Number(process.env.PORT) || 3001;
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);

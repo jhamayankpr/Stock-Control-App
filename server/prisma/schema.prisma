@@ -1,26 +1,25 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// server/prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
 
+
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb" // Change this line
   url      = env("DATABASE_URL")
 }
 
 model Users {
-  userId String @id
-  name   String
-  email  String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String @unique
+  name     String
+  email    String @unique
+  password String
 }
 
 model Products {
-  productId     String      @id
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  productId     String      @unique
   name          String
   price         Float
   rating        Float?
@@ -30,7 +29,8 @@ model Products {
 }
 
 model Sales {
-  saleId      String   @id
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  saleId      String   @unique
   productId   String
   timestamp   DateTime
   quantity    Int
@@ -40,7 +40,8 @@ model Sales {
 }
 
 model Purchases {
-  purchaseId String   @id
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  purchaseId String   @unique
   productId  String
   timestamp  DateTime
   quantity   Int
@@ -50,35 +51,40 @@ model Purchases {
 }
 
 model Expenses {
-  expenseId String   @id
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  expenseId String   @unique
   category  String
   amount    Float
   timestamp DateTime
 }
 
 model SalesSummary {
-  salesSummaryId   String   @id
-  totalValue       Float
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  salesSummaryId String   @unique
+  totalValue     Float
   changePercentage Float?
-  date             DateTime
+  date           DateTime
 }
 
 model PurchaseSummary {
-  purchaseSummaryId String   @id
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  purchaseSummaryId String   @unique
   totalPurchased    Float
   changePercentage  Float?
   date              DateTime
 }
 
 model ExpenseSummary {
-  expenseSummaryId  String              @id
+  id                String              @id @default(auto()) @map("_id") @db.ObjectId
+  expenseSummaryId  String              @unique
   totalExpenses     Float
   date              DateTime
   ExpenseByCategory ExpenseByCategory[]
 }
 
 model ExpenseByCategory {
-  expenseByCategoryId String         @id
+  id                  String       @id @default(auto()) @map("_id") @db.ObjectId
+  expenseByCategoryId String       @unique
   expenseSummaryId    String
   category            String
   amount              BigInt

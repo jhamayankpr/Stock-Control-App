@@ -1,3 +1,4 @@
+// client/src/state/api.ts
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface Product {
@@ -36,7 +37,7 @@ export interface ExpenseSummary {
 }
 
 export interface ExpenseByCategorySummary {
-  expenseByCategorySummaryId: string;
+  expenseByCategoryId: string;
   category: string;
   amount: string;
   date: string;

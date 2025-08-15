@@ -1,3 +1,5 @@
+"use client";
+
 import { useGetDashboardMetricsQuery } from "@/state/api";
 import { ShoppingBag } from "lucide-react";
 import React from "react";
@@ -25,9 +27,7 @@ const CardPopularProducts = () => {
               >
                 <div className="flex items-center gap-3">
                   <Image
-                    src={`https://s3-inventorymanagement.s3.us-east-2.amazonaws.com/product${
-                      Math.floor(Math.random() * 3) + 1
-                    }.png`}
+                    src={`https://s3-inventorymanagement.s3.us-east-2.amazonaws.com/product${Math.floor(Math.random() * 3) + 1}.png`}
                     alt={product.name}
                     width={48}
                     height={48}
@@ -46,7 +46,6 @@ const CardPopularProducts = () => {
                     </div>
                   </div>
                 </div>
-
                 <div className="text-xs flex items-center">
                   <button className="p-2 rounded-full bg-blue-100 text-blue-600 mr-2">
                     <ShoppingBag className="w-4 h-4" />

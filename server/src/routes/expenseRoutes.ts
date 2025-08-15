@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { getExpensesByCategory } from "../controllers/expenseController";
+// Correct named import
+import { auth } from '../../middleware/auth';
 
 const router = Router();
 
-router.get("/", getExpensesByCategory);
+router.get("/", auth, getExpensesByCategory);
 
-export default router;
+export const expenseRoutes = router;

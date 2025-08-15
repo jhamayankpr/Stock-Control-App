@@ -1,79 +1,45 @@
-import { LucideIcon } from "lucide-react";
 import React from "react";
 
-type StatDetail = {
+interface StatCardDetail {
   title: string;
   amount: string;
   changePercentage: number;
-  IconComponent: LucideIcon;
-};
+  IconComponent: React.ElementType;
+}
 
-type StatCardProps = {
+interface StatCardProps {
   title: string;
-  primaryIcon: JSX.Element;
-  details: StatDetail[];
+  primaryIcon: React.ReactNode;
   dateRange: string;
-};
+  details: StatCardDetail[];
+}
 
-const StatCard = ({
+const StatCard: React.FC<StatCardProps> = ({
   title,
   primaryIcon,
-  details,
   dateRange,
-}: StatCardProps) => {
-  const formatPercentage = (value: number) => {
-    const signal = value >= 0 ? "+" : "";
-    return `${signal}${value.toFixed()}%`;
-  };
-
-  const getChangeColor = (value: number) =>
-    value >= 0 ? "text-green-500" : "text-red-500";
-
-  return (
-    <div className="md:row-span-1 xl:row-span-2 bg-white col-span-1 shadow-md rounded-2xl flex flex-col justify-between">
-      {/* HEADER */}
-      <div>
-        <div className="flex justify-between items-center mb-2 px-5 pt-4">
-          <h2 className="font-semibold text-lg text-gray-700">{title}</h2>
-          <span className="text-xs text-gray-400">{dateRange}</span>
-        </div>
-        <hr />
-      </div>
-
-      {/* BODY */}
-      <div className="flex mb-6 items-center justify-around gap-4 px-5">
-        <div className="rounded-full p-5 bg-blue-50 border-sky-300 border-[1px]">
-          {primaryIcon}
-        </div>
-        <div className="flex-1">
-          {details.map((detail, index) => (
-            <React.Fragment key={index}>
-              <div className="flex items-center justify-between my-4">
-                <span className="text-gray-500">{detail.title}</span>
-                <span className="font-bold text-gray-800">{detail.amount}</span>
-                <div className="flex items-center">
-                  <detail.IconComponent
-                    className={`w-4 h-4 mr-1 ${getChangeColor(
-                      detail.changePercentage
-                    )}`}
-                  />
-
-                  <span
-                    className={`font-medium ${getChangeColor(
-                      detail.changePercentage
-                    )}`}
-                  >
-                    {formatPercentage(detail.changePercentage)}
-                  </span>
-                </div>
-              </div>
-              {index < details.length - 1 && <hr />}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
+  details,
+}) => (
+  <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col gap-4">
+    <div className="flex items-center gap-3">
+      {primaryIcon}
+      <h3 className="text-lg font-bold">{title}</h3>
     </div>
-  );
-};
+    <div className="text-gray-600 text-sm mb-2">{dateRange}</div>
+    {details.map((detail, idx) => (
+      <div key={idx} className="flex items-center gap-4 py-1">
+        <div>
+          <detail.IconComponent className="inline w-5 h-5 mr-2" />
+          <span className="font-medium">{detail.title}:</span>
+        </div>
+        <span className="font-bold">{detail.amount}</span>
+        <span className={detail.changePercentage > 0 ? "text-green-600" : "text-red-600"}>
+          {detail.changePercentage > 0 ? "+" : ""}
+          {detail.changePercentage}%
+        </span>
+      </div>
+    ))}
+  </div>
+);
 
 export default StatCard;

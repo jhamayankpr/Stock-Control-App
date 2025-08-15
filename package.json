@@ -1,0 +1,28 @@
+{
+  "name": "inventory-management-app",
+  "version": "1.0.0",
+  "description": "A full-stack inventory management application.",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "author": "Mayank Jha",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongoose": "^5.11.96",
+    "bcryptjs": "^3.0.2",
+    "concurrently": "^7.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1",
+    "react-redux": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.34"
+  }
+}

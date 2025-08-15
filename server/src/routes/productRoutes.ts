@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { createProduct, getProducts } from "../controllers/productController";
+// Correct named import
+import { auth } from '../../middleware/auth';
 
 const router = Router();
 
-router.get("/", getProducts);
-router.post("/", createProduct);
+router.get("/", auth, getProducts);
+router.post("/", auth, createProduct);
 
-export default router;
+export const productRoutes = router;
